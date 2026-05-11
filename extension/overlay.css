@@ -1,0 +1,177 @@
+/* ── Root overlay ──────────────────────────────────────────────────────────── */
+
+#cmr-overlay {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  width: 292px;
+  z-index: 2147483647;
+  border-radius: 16px;
+  padding: 14px 16px 12px;
+  background: rgba(16, 16, 20, 0.96);
+  color: #e4e4e7;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 12.5px;
+  line-height: 1.5;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255,255,255,0.06);
+  border: 1.5px solid rgba(255, 255, 255, 0.07);
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+  user-select: none;
+}
+
+/* ── State-based border colours ───────────────────────────────────────────── */
+
+#cmr-overlay[data-state="good"] {
+  border-color: rgba(34, 197, 94, 0.55);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.45), 0 0 0 1px rgba(34,197,94,0.2);
+}
+
+#cmr-overlay[data-state="overkill"] {
+  border-color: rgba(234, 179, 8, 0.55);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.45), 0 0 0 1px rgba(234,179,8,0.2);
+}
+
+#cmr-overlay[data-state="weak"] {
+  border-color: rgba(239, 68, 68, 0.55);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.45), 0 0 0 1px rgba(239,68,68,0.2);
+}
+
+#cmr-overlay[data-state="idle"] {
+  border-color: rgba(255, 255, 255, 0.07);
+}
+
+/* ── Header ───────────────────────────────────────────────────────────────── */
+
+.cmr-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 11px;
+}
+
+.cmr-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.cmr-toggle {
+  background: rgba(255, 255, 255, 0.09);
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 1px 9px 2px;
+  font-size: 15px;
+  line-height: 1;
+  transition: background 0.15s;
+}
+
+.cmr-toggle:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* ── Body ─────────────────────────────────────────────────────────────────── */
+
+.cmr-body {
+  display: block;
+}
+
+/* ── Rows ─────────────────────────────────────────────────────────────────── */
+
+.cmr-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 4px 0;
+  gap: 8px;
+}
+
+.cmr-label {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 11.5px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.cmr-value {
+  color: #d4d4d8;
+  font-size: 12px;
+  text-align: right;
+  word-break: break-word;
+}
+
+/* ── Divider ──────────────────────────────────────────────────────────────── */
+
+.cmr-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 9px 0;
+}
+
+/* ── Model block ──────────────────────────────────────────────────────────── */
+
+.cmr-model-block {
+  margin: 4px 0;
+}
+
+.cmr-model-label {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 2px;
+}
+
+.cmr-model-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #a78bfa;
+  line-height: 1.3;
+}
+
+.cmr-speed {
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 2px;
+}
+
+/* ── Quota note ───────────────────────────────────────────────────────────── */
+
+.cmr-quota {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 2px 0 4px;
+}
+
+/* ── Token count ──────────────────────────────────────────────────────────── */
+
+.cmr-tokens {
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.35);
+  margin-bottom: 2px;
+}
+
+/* ── Warning ──────────────────────────────────────────────────────────────── */
+
+.cmr-warning {
+  font-size: 12px;
+  color: #fbbf24;
+  margin: 6px 0 2px;
+  display: none;
+  line-height: 1.45;
+}
+
+/* ── Reason ───────────────────────────────────────────────────────────────── */
+
+.cmr-reason {
+  margin-top: 9px;
+  padding-top: 9px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 12px;
+  line-height: 1.5;
+  font-style: italic;
+}

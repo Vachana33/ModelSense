@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "Claude Model Router",
+  "version": "0.1.0",
+  "description": "Recommends the best Claude model for your prompt. Save your Opus quota. Get faster responses on simple tasks.",
+  "permissions": ["storage"],
+  "host_permissions": ["https://claude.ai/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://claude.ai/*"],
+      "js": ["modelRules.js", "analyzer.js", "content.js"],
+      "css": ["overlay.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "Claude Model Router",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

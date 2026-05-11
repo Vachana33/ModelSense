@@ -4,7 +4,7 @@
   position: fixed;
   top: 80px;
   right: 20px;
-  width: 292px;
+  width: 300px;
   z-index: 2147483647;
   border-radius: 16px;
   padding: 14px 16px 12px;
@@ -73,12 +73,6 @@
   background: rgba(255, 255, 255, 0.16);
 }
 
-/* ── Body ─────────────────────────────────────────────────────────────────── */
-
-.cmr-body {
-  display: block;
-}
-
 /* ── Rows ─────────────────────────────────────────────────────────────────── */
 
 .cmr-row {
@@ -101,6 +95,11 @@
   font-size: 12px;
   text-align: right;
   word-break: break-word;
+}
+
+.cmr-current-model {
+  color: #a78bfa;
+  font-weight: 600;
 }
 
 /* ── Divider ──────────────────────────────────────────────────────────────── */
@@ -138,7 +137,7 @@
   margin-top: 2px;
 }
 
-/* ── Quota note ───────────────────────────────────────────────────────────── */
+/* ── Quota / tokens ───────────────────────────────────────────────────────── */
 
 .cmr-quota {
   font-size: 12px;
@@ -146,12 +145,10 @@
   margin: 2px 0 4px;
 }
 
-/* ── Token count ──────────────────────────────────────────────────────────── */
-
 .cmr-tokens {
   font-size: 11.5px;
   color: rgba(255, 255, 255, 0.35);
-  margin-bottom: 2px;
+  margin-bottom: 4px;
 }
 
 /* ── Warning ──────────────────────────────────────────────────────────────── */
@@ -159,9 +156,79 @@
 .cmr-warning {
   font-size: 12px;
   color: #fbbf24;
-  margin: 6px 0 2px;
+  margin: 4px 0;
   display: none;
   line-height: 1.45;
+}
+
+/* ── Action buttons ───────────────────────────────────────────────────────── */
+
+.cmr-actions {
+  display: none;
+  gap: 7px;
+  margin: 8px 0 4px;
+}
+
+.cmr-btn {
+  flex: 1;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, opacity 0.15s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cmr-btn-switch {
+  background: #7c3aed;
+  color: #fff;
+}
+
+.cmr-btn-switch:hover {
+  background: #6d28d9;
+}
+
+.cmr-btn-switch:active {
+  background: #5b21b6;
+}
+
+.cmr-btn-copy {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.75);
+  flex: 0 0 56px;
+}
+
+.cmr-btn-copy:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* ── Switch feedback ──────────────────────────────────────────────────────── */
+
+.cmr-switch-feedback {
+  font-size: 11.5px;
+  margin: 4px 0 2px;
+  display: none;
+  border-radius: 6px;
+  padding: 4px 8px;
+}
+
+.cmr-switch-feedback[data-type="success"] {
+  background: rgba(34, 197, 94, 0.12);
+  color: #4ade80;
+}
+
+.cmr-switch-feedback[data-type="error"] {
+  background: rgba(239, 68, 68, 0.12);
+  color: #f87171;
+}
+
+.cmr-switch-feedback[data-type="info"] {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 /* ── Reason ───────────────────────────────────────────────────────────────── */

@@ -1,0 +1,5 @@
+# Keep all .md files local except README.md
+*.md
+!README.md
+!docs/*.md
+!extension/README.md

@@ -35,14 +35,16 @@ else
 fi
 
 # ── Inject hook using Node.js (safe JSON manipulation) ───────────────────────
+# Note: when using "node -", argv is: [node, "-", arg1, arg2, ...]
+# so user args start at process.argv[2], not process.argv[1].
 
-node - "$CURRENT" "$HOOK_PATH" <<'EOF'
-const current  = JSON.parse(process.argv[1] || "{}");
-const hookPath = process.argv[2];
+INJECT_SCRIPT='
+const current  = JSON.parse(process.argv[2] || "{}");
+const hookPath = process.argv[3];
 
 const hookEntry = {
   matcher: "",
-  hooks: [{ type: "command", command: `node ${hookPath}` }]
+  hooks: [{ type: "command", command: "node " + hookPath }]
 };
 
 if (!current.hooks) current.hooks = {};
@@ -50,35 +52,14 @@ if (!current.hooks.UserPromptSubmit) current.hooks.UserPromptSubmit = [];
 
 // Remove any existing Claude Model Router entry to avoid duplicates
 current.hooks.UserPromptSubmit = current.hooks.UserPromptSubmit.filter(
-  (h) => !JSON.stringify(h).includes("hook.js")
-);
-
-current.hooks.UserPromptSubmit.push(hookEntry);
-
-process.stdout.write(JSON.stringify(current, null, 2) + "\n");
-EOF
-
-# Capture the updated JSON and write it back
-UPDATED=$(node - "$CURRENT" "$HOOK_PATH" <<'EOF'
-const current  = JSON.parse(process.argv[1] || "{}");
-const hookPath = process.argv[2];
-
-const hookEntry = {
-  matcher: "",
-  hooks: [{ type: "command", command: `node ${hookPath}` }]
-};
-
-if (!current.hooks) current.hooks = {};
-if (!current.hooks.UserPromptSubmit) current.hooks.UserPromptSubmit = [];
-
-current.hooks.UserPromptSubmit = current.hooks.UserPromptSubmit.filter(
-  (h) => !JSON.stringify(h).includes("hook.js")
+  function(h) { return JSON.stringify(h).indexOf("hook.js") === -1; }
 );
 
 current.hooks.UserPromptSubmit.push(hookEntry);
 process.stdout.write(JSON.stringify(current, null, 2) + "\n");
-EOF
-)
+'
+
+UPDATED=$(echo "$INJECT_SCRIPT" | node - "$CURRENT" "$HOOK_PATH")
 
 echo "$UPDATED" > "$SETTINGS_FILE"
 

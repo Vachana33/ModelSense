@@ -1,0 +1,48 @@
+{
+  "name": "claude-model-router",
+  "publisher": "vachana-visweswaraiah",
+  "displayName": "Claude Model Router",
+  "description": "Live model recommendation sidebar for Claude Code. Analyzes your prompt as you type and suggests the right model.",
+  "version": "0.1.0",
+  "engines": { "vscode": "^1.80.0" },
+  "categories": ["Other"],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "claudeRouter",
+          "title": "Claude Router",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "claudeRouter": [
+        {
+          "type": "webview",
+          "id": "claudeModelRouter.sidebar",
+          "name": "Claude Model Router"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "claudeModelRouter.openSidebar",
+        "title": "Claude Model Router: Open Sidebar"
+      },
+      {
+        "command": "claudeModelRouter.analyzeSelection",
+        "title": "Claude Model Router: Analyze Selected Text"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "claudeModelRouter.analyzeSelection",
+        "key": "ctrl+shift+m",
+        "mac": "cmd+shift+m"
+      }
+    ]
+  }
+}

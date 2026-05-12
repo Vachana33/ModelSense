@@ -49,7 +49,9 @@ const TASK_RULES = [
     keywords: [
       "refactor", "full stack", "fullstack", "backend", "frontend",
       "database schema", "production", "deploy", "api endpoint",
-      "authentication", "authorization", "middleware", "codebase"
+      "authentication", "authorization", "middleware", "codebase",
+      "rag", "pipeline", "vector", "embedding", "retrieval", "langchain",
+      "llm", "ai pipeline", "document", "query", "index"
     ]
   },
   {
@@ -222,6 +224,16 @@ function recommendModel(taskType, complexityScore) {
       quotaNote: "Worth using Opus here if the problem is tricky."
     };
   }
+  // coding_complex is always at least Sonnet — "low complexity" just means a short prompt,
+  // not that the task itself is simple.
+  if (["coding_complex", "debugging"].includes(taskType)) {
+    return {
+      model:     "sonnet",
+      reason:    "Coding or debugging task detected. Sonnet is the best balance.",
+      quotaNote: "Good default. Save Opus for architecture or very complex tasks."
+    };
+  }
+
   if (complexityScore <= 2) {
     return {
       model:     "haiku",
